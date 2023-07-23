@@ -12,7 +12,7 @@ app.config['AZURE_CONTAINER_NAME'] = host=os.getenv('AZURE_CONTAINER_NAME')
 app.config['SQLALCHEMY_DATABASE_URI'] = host=os.getenv('DATABASE_URL')
 init_db(app)  # Initialize db with the Flask app
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/multimedia', methods=['GET', 'POST'])
 def upload():
     form = UploadForm()
     blob_service_client = BlobServiceClient.from_connection_string(app.config['AZURE_STORAGE_CONNECTION_STRING'])
@@ -45,10 +45,10 @@ def upload():
 
 
 
-@app.route('/healthcheck', methods=['GET'])
+@app.route('/', methods=['GET'])
 def healthcheck():
     return jsonify({"status": "OK"}), 200
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)

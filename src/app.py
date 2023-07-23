@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, jsonify
 from werkzeug.utils import secure_filename
 from azure.storage.blob import BlobServiceClient
 from azure.storage.blob import BlobServiceClient
@@ -42,6 +42,13 @@ def upload():
     ]
 
     return render_template('upload.html', form=form, multimedia_urls=multimedia_urls)
+
+
+
+@app.route('/healthcheck', methods=['GET'])
+def healthcheck():
+    return jsonify({"status": "OK"}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)

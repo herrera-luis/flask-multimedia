@@ -1,0 +1,6 @@
+CREATE TABLE multimedia (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    upload_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -20,7 +20,7 @@ def configure_logger(app):
     logger_handler.setLevel(logging.INFO)
     logger_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger_handler.setFormatter(logger_formatter)
-    log_dir = app.config.get('LOG_DIR', 'logs')
+    log_dir = os.getenv('LOG_DIR', 'logs')
     log_file = os.path.join(log_dir, 'multimedia.log')
     os.makedirs(log_dir, exist_ok=True)
     file_handler = RotatingFileHandler(log_file, maxBytes=10240, backupCount=10)
